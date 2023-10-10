@@ -2,7 +2,26 @@ const readline = require("readline");
 
 const rl = readline.createInterface({output: process.stdout, input: process.stdin});
 
-let secretNumber = 24;
+function askRange() {
+    rl.question("Enter the minimum number: ", (min)=>{
+        min = Number(min);
+        rl.question("Enter the maximimum number: ", (max)=>{
+            max = Number(max);
+            //
+            randomInRange(min,max);
+            rl.close();
+        })
+    })
+}
+
+function randomInRange(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+
+    return Math.floor(Math.random()*(max-min) + min);
+}
+
+let secretNumber = randomInRange(20,30);
 
 function checkGuess(num) {
     if(num>secretNumber) {
@@ -31,4 +50,6 @@ function askGuess() {
     });
 }
 
-askGuess()
+
+
+askRange()
